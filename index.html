@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intensive HTML & CSS Class Registration</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  max-width: 600px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+h2 {
+  text-align: center;
+  color: #333;
+}
+.form-group {
+  margin-bottom: 20px;
+}
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #666;
+}
+input[type="text"],
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-sizing: border-box;
+}
+input[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>Welcome to Our Intensive HTML & CSS Class!</h2>
+  <p>Unlock the power of web development with our comprehensive HTML & CSS class. Join us to learn the fundamentals and master the art of creating stunning websites.</p>
+  <form id="registrationForm" action="https://formspree.io/f/xgegoddp" method="POST">
+    <div class="form-group">
+      <label for="fullName">Full Name</label>
+      <input type="text" id="fullName" name="fullName" required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+      <label for="country">Country</label>
+      <select id="country" name="country" class="country" required>
+        <option value="">Select Country</option>
+        <option value="Ghana">Ghana</option>
+        <option value="Nigeria">Nigeria</option>
+        <option value="Cameroon">Cameroon</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="state">State</label>
+      <select id="state" name="state" class="state" required></select>
+    </div>
+    <div class="form-group">
+      <label for="address">Address</label>
+      <input type="text" id="address" name="address" required>
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <input type="text" id="phone" name="phone" required>
+    </div>
+    <div class="form-group">
+      <label for="experience">Experience Level</label>
+      <select id="experience" name="experience" required>
+        <option value="">Select Experience Level</option>
+        <option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="advanced">Advanced</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="hearAbout">How Did You Hear About Us?</label>
+      <input type="text" id="hearAbout" name="hearAbout">
+    </div>
+    <div class="form-group">
+      <label for="message">Message (Optional)</label>
+      <textarea id="message" name="message" rows="4"></textarea>
+    </div>
+    <input type="submit" value="Register Now">
+  </form>
+  <p class="disclaimer">Your information will be kept confidential and will not be shared with third parties.</p>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const countrySelect = document.getElementById("country");
+  const stateSelect = document.getElementById("state");
+
+  // Define an object with countries and their states
+  const countries = {
+    "Ghana": ["Greater Accra", "Ashanti", "Western", "Eastern", "Central", "Northern", "Volta", "Upper East", "Upper West", "Brong-Ahafo"],
+    "Nigeria": [
+      "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", "Benue", "Borno",
+      "Cross River", "Delta", "Ebonyi", "Edo", "Ekiti", "Enugu", "FCT - Abuja", "Gombe",
+      "Imo", "Jigawa", "Kaduna", "Kano", "Katsina", "Kebbi", "Kogi", "Kwara", "Lagos",
+      "Nasarawa", "Niger", "Ogun", "Ondo", "Osun", "Oyo", "Plateau", "Rivers", "Sokoto",
+      "Taraba", "Yobe", "Zamfara"
+    ],
+    "Cameroon": ["Adamaoua", "Centre", "East", "Far North", "Littoral", "North", "Northwest", "South", "Southwest", "West"]
+    // Add more countries and states as needed
+  };
+
+  // Function to populate states based on the selected country
+  function populateStates() {
+    // Clear existing options
+    stateSelect.innerHTML = "<option value=''>Select State</option>";
+
+    // Get the selected country
+    const selectedCountry = countrySelect.value;
+
+    // Get the states for the selected country from the countries object
+    const states = countries[selectedCountry] || [];
+
+    // Populate the states dropdown
+    states.forEach(state => {
+      const option = document.createElement("option");
+      option.value = state;
+      option.textContent = state;
+      stateSelect.appendChild(option);
+    });
+  }
+  
+  // Populate states when the page loads
+  populateStates();
+  
+  // Populate states whenever the selected country changes
+  countrySelect.addEventListener("change", populateStates);
+});
+</script>
+</body>
+</html>
